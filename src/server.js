@@ -3,16 +3,21 @@
 /* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-extraneous-dependencies */
-import express, { static, json } from 'express';
+import express, { json } from 'express';
 import { connect, Schema, model } from 'mongoose';
 import { resolve } from 'path';
+import cors from 'cors';
+
 
 const app = express()
 require('dotenv').config()
 
 
-const CLIENT_PATH = resolve(__dirname, '../dist')
-app.use(static(CLIENT_PATH))
+app.use(cors({
+    origin: 'https://akbarsauto.com', 
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+}));
 
 const port = process.env.PORT || 3000;
 const {DB_URI} = process.env;
