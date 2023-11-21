@@ -17,6 +17,7 @@ app.use(cors({
     origin: 'https://akbarsauto.com', 
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
+    optionsSuccessStatus: 204,
 }));
 
 const port = process.env.PORT || 3000;
