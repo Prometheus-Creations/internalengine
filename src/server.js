@@ -14,6 +14,7 @@ require('dotenv').config()
 
 
 app.use(cors());
+app.options('*', cors())
 
 const port = process.env.PORT || 3000;
 const {DB_URI} = process.env;
