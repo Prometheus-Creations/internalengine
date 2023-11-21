@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 app.get('/inventory', async (req, res) => {
     try {
       const allCars = await Autos.find({})
-      res.send(allCars)
+      res.status(200).send({ message: 'Found inventory' });
    }
    catch(error) {
       console.error('Error Retrieving Data :', error)
@@ -76,8 +76,7 @@ app.post('/post', async(req, res) => {
         Image
       })
       const savedAutos = await newAutos.save();
-      console.log('Car successfully saved to the database:', savedAutos); 
-      res.send({message: "Succesfully Added Car", car: newAutos})
+      res.status(201).send({ message: 'Car successfully posted' });
     }
     else {
       res.send('Car already posted')
@@ -93,8 +92,7 @@ app.delete('/delete/:id', async (req, res) => {
     const {id} = req.params;
     try {
         const deletedCar = await Autos.deleteOne({ _id: id });
-        console.log("Deleted Car:", deletedCar);
-        res.send("Car successfully deleted");
+        res.status(200).send({ message: 'Vehicle Deleted' });
     } catch (error) {
         console.error('Error Deleting Data:', error);
         res.status(500).send({ error: 'Internal Server Error' });
@@ -105,7 +103,7 @@ app.get('/inventory/:id', async (req, res) => {
     const {id} = req.params;
     try {
         const carData = await Autos.findById(id);
-        res.send(carData);
+        res.status(200).send({ message: 'Heres your vehicle' });
     } catch (error) {
         console.error('Error Retrieving Car Data:', error);
         res.status(500).send({ error: 'Internal Server Error' });
@@ -117,7 +115,7 @@ app.put('/edit/:id', async (req, res) => {
     const {id} = req.params;
     try {
         const updatedCar = await Autos.findByIdAndUpdate(id, req.body, { new: true });
-        res.send("Car successfully edited");
+        res.status(200).send({ message: 'Car successfully updated' });
     } catch (error) {
         console.error('Error Updating Car:', error);
         res.status(500).send({ error: 'Internal Server Error' });
