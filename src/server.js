@@ -18,6 +18,8 @@ app.use(cors({
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    exposedHeaders: ['Authorization'],
 }));
 
 const port = process.env.PORT || 3000;
@@ -61,7 +63,7 @@ app.get('/inventory', async (req, res) => {
    }
 })
 
-
+app.options('/post', cors());
 app.post('/post', async(req, res) => {
   try{
     const {Title, Mileage, Engine, Exterior_color, Interior_color, Vin, Description, Price, Image} = req.body
@@ -80,7 +82,7 @@ app.post('/post', async(req, res) => {
         Image
       })
       const savedAutos = await newAutos.save();
-      console.log('Car successfully saved to the database:', savedAutos); // Add this line
+      console.log('Car successfully saved to the database:', savedAutos); 
       res.send({message: "Succesfully Added Car", car: newAutos})
     }
     else {
