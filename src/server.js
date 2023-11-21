@@ -13,14 +13,7 @@ const app = express()
 require('dotenv').config()
 
 
-app.use(cors({
-    origin: '*', 
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-    optionsSuccessStatus: 204,
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    exposedHeaders: ['Authorization'],
-}));
+app.use(cors());
 
 const port = process.env.PORT || 3000;
 const {DB_URI} = process.env;
