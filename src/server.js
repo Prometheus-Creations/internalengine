@@ -43,7 +43,7 @@ const Autos = model('Autos', AutosSchema)
 
 app.use(json())
 
-app.get('https://akbarsauto.com/inventory', async (req, res) => {
+app.get('/inventory', async (req, res) => {
     try {
       const allCars = await Autos.find({})
       res.send(allCars)
@@ -55,7 +55,7 @@ app.get('https://akbarsauto.com/inventory', async (req, res) => {
 })
 
 
-app.post('https://akbarsauto.com/post', async(req, res) => {
+app.post('/post', async(req, res) => {
   try{
     const {Title, Mileage, Engine, Exterior_color, Interior_color, Vin, Description, Price, Image} = req.body
     const foundCar = await Autos.findOne({Vin})
@@ -86,7 +86,7 @@ app.post('https://akbarsauto.com/post', async(req, res) => {
   }
 })
 
-app.delete('https://akbarsauto.com/delete/:id', async (req, res) => {
+app.delete('/delete/:id', async (req, res) => {
     const {id} = req.params;
     try {
         const deletedCar = await Autos.deleteOne({ _id: id });
@@ -98,7 +98,7 @@ app.delete('https://akbarsauto.com/delete/:id', async (req, res) => {
     }
 });
 
-app.get('https://akbarsauto.com/inventory/:id', async (req, res) => {
+app.get('/inventory/:id', async (req, res) => {
     const {id} = req.params;
     try {
         const carData = await Autos.findById(id);
@@ -110,7 +110,7 @@ app.get('https://akbarsauto.com/inventory/:id', async (req, res) => {
 });
 
 
-app.put('https://akbarsauto.com/edit/:id', async (req, res) => {
+app.put('/edit/:id', async (req, res) => {
     const {id} = req.params;
     try {
         const updatedCar = await Autos.findByIdAndUpdate(id, req.body, { new: true });
