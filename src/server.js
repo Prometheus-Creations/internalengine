@@ -14,7 +14,7 @@ require('dotenv').config()
 
 
 app.use(cors({
-    origin: 'https://akbarsauto.com', 
+    origin: '*', 
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
@@ -63,7 +63,7 @@ app.get('/inventory', async (req, res) => {
    }
 })
 
-app.options('/post', cors());
+
 app.post('/post', async(req, res) => {
   try{
     const {Title, Mileage, Engine, Exterior_color, Interior_color, Vin, Description, Price, Image} = req.body
