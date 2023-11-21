@@ -10,6 +10,11 @@
       "StackName": "amplify-internalengine-dev-145944",
       "StackId": "arn:aws:cloudformation:us-west-1:056665950658:stack/amplify-internalengine-dev-145944/7fe0eb70-87f8-11ee-b024-0625312dace3",
       "AmplifyAppId": "d38bupngobwmay"
+    },
+    "categories": {
+      "auth": {
+        "internalengine2acae1d8": {}
+      }
     }
   }
 }
