@@ -12,14 +12,22 @@ import cors from 'cors';
 const app = express()
 require('dotenv').config()
 
-app.use(cors());
-
-app.use((req, res, next) => {
+const corsMiddleware = (req, res, next) => {
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Credentials', true);
+
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+    return;
+  }
+
+
   next();
-});
+};
 
-
+app.use(corsMiddleware);
 const port = process.env.PORT || 3000;
 const {DB_URI} = process.env;
 
