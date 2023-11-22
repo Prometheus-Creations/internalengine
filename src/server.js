@@ -7,10 +7,10 @@ import express, { json } from 'express';
 import { connect, Schema, model } from 'mongoose';
 import { resolve } from 'path';
 import cors from 'cors';
-
+import dotenv from 'dotenv';
 
 const app = express()
-require('dotenv').config()
+dotenv.config()
 
 const corsMiddleware = (req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
