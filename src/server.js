@@ -12,12 +12,7 @@ import cors from 'cors';
 const app = express()
 require('dotenv').config()
 
-
-const corsOptions = {
-  origin: '*',
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -48,12 +43,6 @@ const AutosSchema = new Schema({
 const Autos = model('Autos', AutosSchema)
 
 app.use(json())
-
-app.use((req, res, next) => {
-  console.log(`Received ${req.method} request at ${req.url}`);
-  next();
-});
-
 
 app.get('/inventory', async (req, res) => {
     try {
