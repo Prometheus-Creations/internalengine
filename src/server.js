@@ -52,7 +52,7 @@ const Autos = model('Autos', AutosSchema)
 
 app.use(json())
 
-app.get('/inventory', async (req, res) => {
+app.get('/inventory/', async (req, res) => {
     try {
       const allCars = await Autos.find({})
       res.status(200).send({ message: 'Found inventory' });
@@ -64,7 +64,7 @@ app.get('/inventory', async (req, res) => {
 })
 
 
-app.post('/post', async(req, res) => {
+app.post('/post/', async(req, res) => {
   try{
     const {Title, Mileage, Engine, Exterior_color, Interior_color, Vin, Description, Price, Image} = req.body
     const foundCar = await Autos.findOne({Vin})
@@ -94,7 +94,7 @@ app.post('/post', async(req, res) => {
   }
 })
 
-app.delete('/delete/:id', async (req, res) => {
+app.delete('/delete/:id/', async (req, res) => {
     const {id} = req.params;
     try {
         const deletedCar = await Autos.deleteOne({ _id: id });
@@ -105,7 +105,7 @@ app.delete('/delete/:id', async (req, res) => {
     }
 });
 
-app.get('/inventory/:id', async (req, res) => {
+app.get('/inventory/:id/', async (req, res) => {
     const {id} = req.params;
     try {
         const carData = await Autos.findById(id);
@@ -117,7 +117,7 @@ app.get('/inventory/:id', async (req, res) => {
 });
 
 
-app.put('/edit/:id', async (req, res) => {
+app.put('/edit/:id/', async (req, res) => {
     const {id} = req.params;
     try {
         const updatedCar = await Autos.findByIdAndUpdate(id, req.body, { new: true });
