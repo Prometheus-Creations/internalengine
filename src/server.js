@@ -13,8 +13,17 @@ const app = express()
 require('dotenv').config()
 
 
-app.use(cors());
-app.options('*', cors())
+const corsOptions = {
+  origin: '*',
+};
+
+app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 
 const port = process.env.PORT || 3000;
 const {DB_URI} = process.env;
