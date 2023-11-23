@@ -41,7 +41,7 @@ const Autos = model('Autos', AutosSchema)
 
 app.use(json())
 
-app.get('/inventory/', async (req, res) => {
+app.get('/inventory', async (req, res) => {
     try {
       console.log('Server: Handling GET request to /inventory/');
       const allCars = await Autos.find({})
