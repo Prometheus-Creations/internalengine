@@ -42,7 +42,7 @@ app.use(json())
 app.get('/inventory', async (req, res) => {
     try {
       const allCars = await Autos.find({})
-      res.status(200).send({ message: 'Found inventory' });
+      res.status(200).json({ message: 'Found inventory', data: allCars });
    }
    catch(error) {
       console.error('Error Retrieving Data :', error)
@@ -69,7 +69,7 @@ app.post('/post', async(req, res) => {
         Image
       })
       const savedAutos = await newAutos.save();
-      res.status(201).send({ message: 'Car successfully posted' });
+      res.status(201).send({ message: 'Car successfully posted', data: savedAutos });
     }
     else {
       res.send('Car already posted')
@@ -96,7 +96,7 @@ app.get('/inventory/:id', async (req, res) => {
     const {id} = req.params;
     try {
         const carData = await Autos.findById(id);
-        res.status(200).send({ message: 'Heres your vehicle' });
+        res.status(200).json({ message: 'Here is your vehicle', data: carData });
     } catch (error) {
         console.error('Error Retrieving Car Data:', error);
         res.status(500).send({ error: 'Internal Server Error' });
@@ -108,7 +108,7 @@ app.put('/edit/:id', async (req, res) => {
     const {id} = req.params;
     try {
         const updatedCar = await Autos.findByIdAndUpdate(id, req.body, { new: true });
-        res.status(200).send({ message: 'Car successfully updated' });
+        res.status(200).json({ message: 'Car successfully updated', data: updatedCar });
     } catch (error) {
         console.error('Error Updating Car:', error);
         res.status(500).send({ error: 'Internal Server Error' });
