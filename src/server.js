@@ -12,24 +12,11 @@ import dotenv from 'dotenv';
 const app = express()
 dotenv.config()
 
-const corsMiddleware = (req, res, next) => {
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Credentials', true);
-
-  if (req.method === 'OPTIONS') {
-    res.sendStatus(200);
-    return;
-  }
-
-
-  next();
-};
-
-app.use(corsMiddleware);
 const port = process.env.PORT || 3000;
 const {DB_URI} = process.env;
+
+app.use(cors());
+app.options('*', cors());
 
 connect(DB_URI)
   .then(() => console.log('Connected!'))
@@ -64,7 +51,7 @@ app.get('/inventory', async (req, res) => {
 })
 
 
-app.post('/post', async(req, res) => {
+app.post('/post/', async(req, res) => {
   try{
     const {Title, Mileage, Engine, Exterior_color, Interior_color, Vin, Description, Price, Image} = req.body
     const foundCar = await Autos.findOne({Vin})
