@@ -18,6 +18,19 @@ const {DB_URI} = process.env;
 app.use(cors());
 app.options('*', cors());
 
+
+app.use((req, res, next) => {
+  const hasTrailingSlash = req.path.endsWith('/');
+  
+  // Check if the URL has a trailing slash
+  if (!hasTrailingSlash && req.path !== '/') {
+    // Redirect to the same URL with a trailing slash
+    res.redirect(301, `${req.path}/`);
+  } else {
+    next();
+  }
+});
+
 connect(DB_URI)
   .then(() => console.log('Connected!'))
   .catch((error) => console.error(error))
