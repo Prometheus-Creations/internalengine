@@ -51,7 +51,7 @@ app.get('/inventory', async (req, res) => {
 })
 
 
-app.post('/post/', async(req, res) => {
+app.post('/post', async(req, res) => {
   try{
     const {Title, Mileage, Engine, Exterior_color, Interior_color, Vin, Description, Price, Image} = req.body
     const foundCar = await Autos.findOne({Vin})
