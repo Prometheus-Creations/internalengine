@@ -14,6 +14,9 @@
     "categories": {
       "auth": {
         "internalengine2acae1d8": {}
+      },
+      "storage": {
+        "s3internalenginestorage36d83577": {}
       }
     }
   }
