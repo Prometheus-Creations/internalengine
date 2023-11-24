@@ -43,7 +43,7 @@ app.use(json())
 
 app.get('/inventory', async (req, res) => {
     try {
-      console.log('Server: Handling GET request to /inventory/');
+      console.log('Server: Handling GET request to /inventory');
       const allCars = await Autos.find({})
       console.log('Server: Successfully retrieved data');
       res.status(200).json({ message: 'Found inventory', data: allCars });
