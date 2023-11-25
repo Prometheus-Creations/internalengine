@@ -45,6 +45,12 @@ const Autos = model('Autos', AutosSchema)
 
 app.use(json())
 
+
+app.use('/healthcheck', (req, res) => {
+  res.status(200).send('Ok')
+})
+
+
 app.get('/inventory', async (req, res) => {
     try {
       console.log('Server: Handling GET request to /inventory');
