@@ -16,9 +16,13 @@ const port = process.env.PORT || 3000;
 const {DB_URI} = process.env;
 
 app.use(cors());
-app.options('*', cors());
 
-
+app.options('/post', (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.sendStatus(204);
+});
 
 connect(DB_URI || 'mongodb://localhost:27017/akbarsauto')
   .then(() => console.log('Connected!'))
