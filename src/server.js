@@ -20,7 +20,7 @@ app.options('*', cors());
 
 
 
-connect(DB_URI)
+connect(DB_URI || 'mongodb://localhost:27017/akbarsauto')
   .then(() => console.log('Connected!'))
   .catch((error) => console.error(error))
 
