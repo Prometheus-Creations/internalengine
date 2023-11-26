@@ -8,6 +8,7 @@ import { connect, Schema, model } from 'mongoose';
 import { resolve } from 'path';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { MongoClient } from 'mongodb';
 
 const app = express()
 dotenv.config()
