@@ -13,19 +13,13 @@ import { MongoClient } from 'mongodb';
 const app = express()
 dotenv.config()
 
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 const {DB_URI} = process.env;
 
 app.use(cors());
 
-app.options('/post', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.sendStatus(204);
-});
 
-connect(DB_URI || 'mongodb://localhost:27017/akbarsauto')
+connect(DB_URI ||'mongodb+srv://akbarkhawaja:Unlocked1234!@cluster0.yi8xtmf.mongodb.net/akbarsauto?retryWrites=true&w=majority')
   .then(() => console.log('Connected!'))
   .catch((error) => console.error(error))
 
@@ -47,8 +41,8 @@ const Autos = model('Autos', AutosSchema)
 app.use(json())
 
 
-app.use('/healthcheck', (req, res) => {
-  res.status(200).send('Ok')
+app.use('/', (req, res) => {
+  res.status(200).send('Hello World')
 })
 
 
