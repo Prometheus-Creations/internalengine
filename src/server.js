@@ -51,7 +51,7 @@ app.get('/inventory', async (req, res) => {
       console.log('Server: Handling GET request to /inventory');
       const allCars = await Autos.find({})
       console.log('Server: Successfully retrieved data');
-      res.status(200).json({ message: 'Found inventory', data: allCars });
+      res.status(200).json({ message: 'Found inventory', data: allCars }).send('not hello world');
    }
    catch(error) {
       console.error('Error Retrieving Data :', error)
