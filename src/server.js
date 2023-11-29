@@ -41,8 +41,8 @@ const Autos = model('Autos', AutosSchema)
 app.use(json())
 
 
-app.use('/', (req, res) => {
-  res.status(200).send('Hello World')
+app.get('/', (req, res) => {
+  res.status(200).send('Test')
 })
 
 
