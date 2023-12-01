@@ -127,4 +127,4 @@ app.put('/edit/:id', async (req, res) => {
 
 
 
-app.listen(port, () => {console.log(`Server is connected on ${port}`)})
+app.listen(port, '0.0.0.0', () => {console.log(`Server is connected on ${port}`)})
