@@ -13,7 +13,7 @@ import { MongoClient } from 'mongodb';
 const app = express()
 dotenv.config()
 
-const port = process.env.PORT || 443;
+const port = process.env.PORT || 3000;
 const {DB_URI} = process.env;
 
 app.use(cors());
